@@ -24,9 +24,7 @@ Usage
 =====
 
 To see the DRM test help: drmtest
-
 To execute the DRM test in nodelock mode: sudo drmtest 0
-
 To execute the DRM test in metering mode: sudo drmtest 1
 
 Note: An Internet connection could be required to run the DRM test from the board. 
@@ -36,8 +34,5 @@ Note: An Internet connection could be required to run the DRM test from the boar
 Documentation
 =============
 
-DRM global documentation: https://tech.accelize.com/documentation/stable/index.html
-
-To implement your own PL design, refer to: https://tech.accelize.com/documentation/stable/drm_getting_started.html#adapt-your-fpga-design
-
-To modify your PS application, refer to: https://tech.accelize.com/documentation/stable/drm_getting_started.html#adapt-your-software-application
+Accelize DRM central documentation: https://wiki.accelize.com/home/index.html
+Accelize DRM Kria documentation: https://wiki.accelize.com/home/How-to-Publish-a-Kria-Application-on-the-Xilinx-Kria-Store.147226634.html
