@@ -16,7 +16,7 @@
  * MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES.
  */
 /*
- * File: drmtest.cpp
+ * File: drmselftest.cpp
  */
 
 #define CL_USE_DEPRECATED_OPENCL_1_2_APIS
@@ -257,8 +257,8 @@ uint32_t check_drm_event(DrmManager* pDrmManager, uint32_t expected_event) {
 
 
 void print_usage() {
-    printf("Usage: drmtest [MODE]\n");
-    printf("Example: drmtest 1\n");
+    printf("Usage: drmselftest [MODE]\n");
+    printf("Example: drmselftest 1\n");
     printf("Run Accelize DRM self-test application. Two test modes can be executed: nodelocked or metering modes\n");
     printf("In nodelocked mode, no Internet access is required except for the first run to provision the permanent license file. \
 You can also request the license file by email at support@accelize.com.\n");
@@ -282,12 +282,12 @@ int main(int argc, char **argv) {
         conf_path = std::string("/usr/bin/kria_metering_conf.json");
     }
     std::string cred_path("/usr/bin/kria_cred.json");
-    std::string xclbin("/lib/firmware/xilinx/fpgatest/fpgatest.xclbin");
+    std::string xclbin("/lib/firmware/xilinx/drmselftest-fpga/drmselftest-fpga.xclbin");
     printf("Using xclbin file: %s\n", xclbin.c_str());
     
     DrmAsyncError = 0;
     cl_int err = -1;
-    unsigned long long drmlib_evt_cnt, drmtest_evt_cnt, drmact_evt_cnt;
+    unsigned long long drmlib_evt_cnt, drmselftest_evt_cnt, drmact_evt_cnt;
     std:string license_type_expected;    
     DrmManager *pDrmManager = NULL;   
     uint32_t reg, reg_expected;
@@ -428,7 +428,7 @@ int main(int argc, char **argv) {
         err ++;
         goto quit;
     }
-    drmtest_evt_cnt = 0;
+    drmselftest_evt_cnt = 0;
     
     
 // ACCELIZE CODE TO UNLOCK APPLICATION STARTS HERE
@@ -475,18 +475,18 @@ int main(int argc, char **argv) {
 
     if (!nodelock) {
         // Check DRM events
-        if (check_drm_event(pDrmManager, drmtest_evt_cnt)) {
+        if (check_drm_event(pDrmManager, drmselftest_evt_cnt)) {
             err ++;
             goto quit;
         }
         // Generate DRM events
-        drmtest_evt_cnt += 7;
-        if (generate_drm_event(drmtest_evt_cnt)) {
+        drmselftest_evt_cnt += 7;
+        if (generate_drm_event(drmselftest_evt_cnt)) {
             err ++;
             goto quit;
         }
         // Check DRM events
-        if (check_drm_event(pDrmManager, drmtest_evt_cnt)) {
+        if (check_drm_event(pDrmManager, drmselftest_evt_cnt)) {
             err ++;
             goto quit;
         }

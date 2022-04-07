@@ -1,13 +1,13 @@
 #
-# This is drmtest application recipe
+# This is the drmselftest application recipe
 #
 
-SUMMARY = "drmtest application"
+SUMMARY = "drmselftest application"
 SECTION = "PETALINUX/apps"
 LICENSE = "CLOSED"
 
 SRC_URI = " \
-    file://drmtest.cpp \
+    file://drmselftest.cpp \
     file://Makefile \
     file://kria_cred.json \
     file://kria_nodelock_conf.json \
@@ -23,7 +23,7 @@ S = "${WORKDIR}"
 
 do_install() {
     install -d ${D}${bindir}
-    install -m 0755 ${S}/drmtest ${D}${bindir}
+    install -m 0755 ${S}/drmselftest ${D}${bindir}
     install -m 0644 ${S}/kria_cred.json ${D}${bindir}
     install -m 0644 ${S}/kria_nodelock_conf.json ${D}${bindir}
     install -m 0644 ${S}/kria_metering_conf.json ${D}${bindir}
