@@ -23,9 +23,9 @@ Maintainer: Accelize Support <support@accelize.com>
 Usage
 =====
 
-To see the DRM test help: drmtest
-To execute the DRM test in nodelock mode: sudo drmtest 0
-To execute the DRM test in metering mode: sudo drmtest 1
+To see the DRM test help: drmselftest
+To execute the DRM test in nodelock mode: sudo drmselftest 0
+To execute the DRM test in metering mode: sudo drmselftest 1
 
 Note: An Internet connection could be required to run the DRM test from the board. 
       See the DRM test help for more details.
