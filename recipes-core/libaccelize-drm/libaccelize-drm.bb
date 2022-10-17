@@ -10,6 +10,7 @@ SRC_URI = "gitsm://github.com/Accelize/drm.git;protocol=http;tag=v2.5.4"
 PV = "2.5.4"
 
 DEPENDS += "curl jsoncpp"
+RDEPENDS:${PN} = "libprovencore"
 
 S = "${WORKDIR}/git"
 
