@@ -257,8 +257,8 @@ uint32_t check_drm_event(DrmManager* pDrmManager, uint32_t expected_event) {
 
 
 void print_usage() {
-    printf("Usage: drmselftest [MODE]\n");
-    printf("Example: drmselftest 1\n");
+    printf("Usage: xlz-drmselftest [MODE]\n");
+    printf("Example: xlz-drmselftest 1\n");
     printf("Run Accelize DRM self-test application. Two test modes can be executed: nodelocked or metering modes\n");
     printf("In nodelocked mode, no Internet access is required except for the first run to provision the permanent license file. \
 You can also request the license file by email at support@accelize.com.\n");
@@ -277,12 +277,12 @@ int main(int argc, char **argv) {
     bool nodelock = std::string(argv[1]) == "0";
     printf("Selected nodelocked mode: %u\n", nodelock);    
     
-    std::string conf_path("/usr/bin/kria_nodelock_conf.json");
+    std::string conf_path("/usr/bin/xlz-drmselftest-nodelock-conf.json");
     if (!nodelock) {
-        conf_path = std::string("/usr/bin/kria_metering_conf.json");
+        conf_path = std::string("/usr/bin/xlz-drmselftest-floating-conf.json");
     }
-    std::string cred_path("/usr/bin/kria_cred.json");
-    std::string xclbin("/lib/firmware/xilinx/drmselftest-fpga/drmselftest-fpga.xclbin");
+    std::string cred_path("/etc/xilinx_appstore/cred.json");
+    std::string xclbin("/lib/firmware/xilinx/accelize-drmselftest-fpga/xlz-drmselftest-fpga.xclbin");
     printf("Using xclbin file: %s\n", xclbin.c_str());
     
     DrmAsyncError = 0;
@@ -303,7 +303,7 @@ int main(int argc, char **argv) {
     cl_uint platform_found = 0;
     err = clGetPlatformIDs(16, platforms, &platform_count);
     if (err != CL_SUCCESS) {
-        printf("ERROR: Failed to find an OpenCL platform!\n");
+        printf("ERROR: Failed to find a platform!\n");
         return EXIT_FAILURE;
     }
     printf("INFO: Found %d platforms\n", platform_count);
@@ -411,7 +411,7 @@ int main(int argc, char **argv) {
     // Read DRM Controller Mailbox size register
     read_register(DRM_CTRL_ADDRESS + REG_CTRL_MAILBOX_SIZE, &reg);
     printf("DRM Controller Mailbox sizes: 0x%08X\n", reg);
-    
+
     //--------------------------------------
     // TESTING DRM ACTIVATOR
     //--------------------------------------
@@ -445,7 +445,7 @@ int main(int argc, char **argv) {
     );
     try {
         err += check_drm_states(pDrmManager, false, "");
-        pDrmManager->activate();        
+        pDrmManager->activate();
     } catch( const Exception& e ) {                                                                
         printf("ERROR: DRM failure: %s\n", e.what());
         err ++;
@@ -462,7 +462,7 @@ int main(int argc, char **argv) {
     err += check_drm_states(pDrmManager, false, "");
     if (DRM_OK != DrmManager_activate(pDrmManager, false)) {
         printf("ERROR: Error activating DRM Manager object: %s\n", pDrmManager->error_message);
-        err ++;        
+        err ++;
     }
 #endif
     license_type_expected = (nodelock)? std::string("Node-Locked") : std::string("Floating/Metering");
@@ -491,7 +491,7 @@ int main(int argc, char **argv) {
             goto quit;
         }
     }
-    
+
 quit:
 
 
@@ -517,7 +517,7 @@ quit:
         err ++;
     }
 #endif
-    printf("[DRMLIB] DRM Session stopped (PL is locked)\n");    
+    printf("[DRMLIB] DRM Session stopped (PL is locked)\n");
 // ACCELIZE CODE TO LOCK APPLICATION ENDS HERE
 
     clReleaseProgram(program);
