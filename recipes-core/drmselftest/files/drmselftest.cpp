@@ -282,7 +282,7 @@ int main(int argc, char **argv) {
         conf_path = std::string("/usr/bin/xlz-drmselftest-floating-conf.json");
     }
     std::string cred_path("/etc/xilinx_appstore/cred.json");
-    std::string xclbin("/lib/firmware/xilinx/accelize-drmselftest-fpga/xlz-drmselftest-fpga.xclbin");
+    std::string xclbin("/lib/firmware/xilinx/drmselftest-fpga/xlz-drmselftest-fpga.xclbin");
     printf("Using xclbin file: %s\n", xclbin.c_str());
     
     DrmAsyncError = 0;

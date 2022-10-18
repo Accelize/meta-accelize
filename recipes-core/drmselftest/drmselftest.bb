@@ -1,35 +1,40 @@
 #
-# This is Accelize drmselftest application recipe
+# This is the Accelize's drmselftest application recipe
 #
 
-SUMMARY = "Accelize drmselftest application"
+SUMMARY = "Accelize DrmSelfTest application"
 SECTION = "PETALINUX/apps"
 LICENSE = "CLOSED"
 
-SRC_URI = " \
-    file://drmselftest.cpp \
-    file://Makefile \
-    file://xlz-drmselftest-nodelock-conf.json \
-    file://xlz-drmselftest-floating-conf.json \
-    "
+SRC_URI = "file://drmselftest.cpp \
+           file://Makefile \
+           file://README \
+           file://xlz-drmselftest-nodelock-conf.json \
+           file://xlz-drmselftest-floating-conf.json \
+          "
+
+PKGR = "1.pl${@d.getVar('XILINX_VER_MAIN').replace('.', '_')}"
 
 export STAGING_INCDIR
 TARGET_CC_ARCH += "${LDFLAGS}"
 
-DEPENDS += "xrt jsoncpp libaccelize-drm"
-RDEPENDS:${PN} += "drmselftest-fpga"
+DEPENDS += " jsoncpp libaccelize-drm xrt"
+RDEPENDS:${PN} += " drmselftest-fpga"
 
 S = "${WORKDIR}"
 
 do_install() {
     install -d ${D}${bindir}
     install -d ${D}${sysconfdir}/xilinx_appstore
+    install -d ${D}${sysconfdir}/xilinx_appstore/xlz-drmselftest
     install -m 0755 ${S}/xlz-drmselftest ${D}${bindir}
-    install -m 0644 ${S}/xlz-drmselftest-nodelock-conf.json ${D}${bindir}
-    install -m 0644 ${S}/xlz-drmselftest-floating-conf.json ${D}${bindir}
+    install -m 0644 ${S}/README ${D}${sysconfdir}/xilinx_appstore/xlz-drmselftest/
+    install -m 0644 ${S}/xlz-drmselftest-nodelock-conf.json ${D}${sysconfdir}/xilinx_appstore/xlz-drmselftest/
+    install -m 0644 ${S}/xlz-drmselftest-floating-conf.json ${D}${sysconfdir}/xilinx_appstore/xlz-drmselftest/
 }
 
 pkg_postinst:${PN} () {
     #!/bin/sh -e
     chmod u+s $D${bindir}/xlz-drmselftest
+    chmod a+rw $D${sysconfdir}/xilinx_appstore
 }
