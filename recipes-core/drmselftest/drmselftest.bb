@@ -1,5 +1,5 @@
 #
-# This is drmselftest application recipe
+# This is Accelize drmselftest application recipe
 #
 
 SUMMARY = "Accelize drmselftest application"
@@ -17,7 +17,7 @@ export STAGING_INCDIR
 TARGET_CC_ARCH += "${LDFLAGS}"
 
 DEPENDS += "xrt jsoncpp libaccelize-drm"
-RDEPENDS:${PN} += "accelize-drmselftest-fpga"
+RDEPENDS:${PN} += "drmselftest-fpga"
 
 S = "${WORKDIR}"
 
