@@ -6,10 +6,11 @@ SUMMARY = "Accelize DRM Library"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://${WORKDIR}/git/LICENSE;md5=e368f0931469a726e1017aaa567bd040"
 
-SRC_URI = "gitsm://github.com/Accelize/drm.git;protocol=http;tag=v2.5.4"
-PV = "2.5.4"
+SRC_URI = "gitsm://github.com/Accelize/drm.git;protocol=http;tag=v2.5.5"
+PV = "2.5.5"
+PKGR = "1.pl${@d.getVar('XILINX_VER_MAIN').replace('.', '_')}"
 
-DEPENDS += "curl jsoncpp"
+DEPENDS += "curl jsoncpp libprovencore"
 
 S = "${WORKDIR}/git"
 
