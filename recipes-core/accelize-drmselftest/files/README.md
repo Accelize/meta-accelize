@@ -1,7 +1,6 @@
 ## Commands to load fpga part of Accelize DrmSelfTest Application ##
 sudo xmutil unloadapp
-sudo xmutil loadapp xlz-drmselftest-fpga
-
+sudo xmutil loadapp accelize-drmselftest-firmware
 
 ## Example usage of Accelize DrmSelfTest Application ##
 

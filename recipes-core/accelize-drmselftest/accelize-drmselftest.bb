@@ -8,7 +8,7 @@ LICENSE = "CLOSED"
 
 SRC_URI = "file://drmselftest.cpp \
            file://Makefile \
-           file://README \
+           file://README.md \
            file://xlz-drmselftest-nodelock-conf.json \
            file://xlz-drmselftest-floating-conf.json \
           "
@@ -19,18 +19,18 @@ export STAGING_INCDIR
 TARGET_CC_ARCH += "${LDFLAGS}"
 
 DEPENDS += " jsoncpp libaccelize-drm xrt"
-RDEPENDS:${PN} += " drmselftest-fpga"
+RDEPENDS:${PN} += " accelize-drmselftest-firmware"
 
 S = "${WORKDIR}"
 
 do_install() {
     install -d ${D}${bindir}
     install -d ${D}${sysconfdir}/xilinx_appstore
-    install -d ${D}${sysconfdir}/xilinx_appstore/xlz-drmselftest
+    install -d ${D}${sysconfdir}/xilinx_appstore/accelize-drmselftest
     install -m 0755 ${S}/xlz-drmselftest ${D}${bindir}
-    install -m 0644 ${S}/README ${D}${sysconfdir}/xilinx_appstore/xlz-drmselftest/
-    install -m 0644 ${S}/xlz-drmselftest-nodelock-conf.json ${D}${sysconfdir}/xilinx_appstore/xlz-drmselftest/
-    install -m 0644 ${S}/xlz-drmselftest-floating-conf.json ${D}${sysconfdir}/xilinx_appstore/xlz-drmselftest/
+    install -m 0644 ${S}/README.md ${D}${sysconfdir}/xilinx_appstore/accelize-drmselftest/
+    install -m 0644 ${S}/xlz-drmselftest-nodelock-conf.json ${D}${sysconfdir}/xilinx_appstore/accelize-drmselftest/
+    install -m 0644 ${S}/xlz-drmselftest-floating-conf.json ${D}${sysconfdir}/xilinx_appstore/accelize-drmselftest/
 }
 
 pkg_postinst:${PN} () {
