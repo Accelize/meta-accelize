@@ -20,6 +20,7 @@ TARGET_CC_ARCH += "${LDFLAGS}"
 
 DEPENDS += " jsoncpp libaccelize-drm xrt"
 RDEPENDS:${PN} += " accelize-drmselftest-firmware"
+RDEPENDS:${PN} += " zocl (=202210.2.13.479)"
 
 S = "${WORKDIR}"
 
