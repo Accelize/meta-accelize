@@ -530,8 +530,10 @@ quit:
 
     if (err == 0)
         printf("SUCCESS (%d)\n", err);
-    else
+    else {
         printf("!!! FAILURE (%d) !!!\n", err);
-    
+        printf("For more information, please refer to:\nhttps://appstore.xilinx.com/products/acceleration-solutions/accelize_drm_selftest.html\n");
+    }
+            
     return err;
 }

@@ -13,3 +13,5 @@ xlz-drmselftest 0
 Make sure to plug in the Internet network RJ-45 cable on the Kria board.
 xlz-drmselftest 1
 If you unplugged the Internet cable you'll get an error.
+
+For more information, please refer to: https://appstore.xilinx.com/products/acceleration-solutions/accelize_drm_selftest.html
