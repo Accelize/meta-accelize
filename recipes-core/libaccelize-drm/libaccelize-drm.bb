@@ -11,6 +11,7 @@ PV = "2.5.5"
 PKGR = "1.pl${@d.getVar('XILINX_VER_MAIN').replace('.', '_')}"
 
 DEPENDS += "curl jsoncpp libprovencore"
+RDEPENDS:${PN} += " libprovencore"
 
 S = "${WORKDIR}/git"
 
