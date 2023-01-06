@@ -5,9 +5,9 @@ sudo xmutil loadapp accelize-drmselftest-firmware
 ## Example usage of Accelize DrmSelfTest Application ##
 
 # To test the nodelocked licensing
-1- Plug in the Internet network RJ-45 cable on the Kria board to donwload the permanent nodelocked license.
+1- Plug in the Internet network RJ-45 cable on the Kria board to download the permanent nodelocked license.
 xlz-drmselftest 0
-2- You can now unplugged the Internet cable and verify that the application continue to run successful
+2- You can now unplug the Internet cable and verify that the application continues to run successfully.
 
 # To test the floating licensing
 Make sure to plug in the Internet network RJ-45 cable on the Kria board.
